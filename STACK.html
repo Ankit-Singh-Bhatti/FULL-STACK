@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ticket Booking</title>
+    <style>
+       body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1c1c1c; /* Dark gray background */
+            margin: 0;
+            padding: 0;
+            color: #fff; /* Text color */
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        section {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .movie-container {
+            display: inline-block;
+            width: 30%;
+            margin: 20px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .movie-container:hover {
+            transform: scale(1.05);
+        }
+
+        .movie-poster {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Maintain aspect ratio */
+            border-radius: 10px;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .movie-container:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay p {
+            margin: 0;
+            padding: 10px;
+            background: #e8491d; /* Highlight color on hover */
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s, background 0.3s;
+        }
+
+        .movie-container:hover .overlay p {
+            opacity: 1;
+        }
+
+        #booking-form {
+            background-color: #333; /* Dark background for the form */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+            text-align: left;
+            width: 60%;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        input {
+            width: calc(100% - 16px);
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: #1c1c1c; /* Dark gray background for the input fields */
+            color: #fff; /* Text color for the input fields */
+        }
+
+        button {
+            background-color: #e8491d;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #go-back-btn {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: none;
+        }
+        #location {
+            width: calc(100% - 16px);
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: #1c1c1c;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #location option {
+            background-color: #333;
+            color: #fff;
+        }
+
+        /* Date input icon color */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+        }
+
+        /* Time input icon color */
+        input[type="time"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Movie Ticket Booking</h1>
+    </header>
+
+    <section>
+        <!-- Wonka Container -->
+        <div class="movie-container" onclick="showBookingForm('wonka');">
+            <img src="https://deadline.com/wp-content/uploads/2023/11/WONKA_INSTA_VERT_MAIN_1638x2048_DOM.jpg?w=800"
+                alt="Wonka Poster" class="movie-poster" id="wonka-poster">
+            <div class="overlay">
+                <h3>Wonka</h3>
+                <p class="animate-fade-in">Click to Book</p>
+            </div>
+        </div>
+
+        <!-- Aquaman Container -->
+        <div class="movie-container" onclick="showBookingForm('aquaman');">
+            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcR7ss6zbDj60sAol5JsdoBujNwuMIiDCCbD4jlluM68pJG-i7_t"
+                alt="Aquaman Poster" class="movie-poster" id="aquaman-poster">
+            <div class="overlay">
+                <h3>Aquaman and the Lost Kingdom</h3>
+                <p class="animate-fade-in">Click to Book</p>
+            </div>
+        </div>
+
+        <!-- Movie 3 Container -->
+        <div class="movie-container" onclick="showBookingForm('movie3');">
+            <img src="https://resizing.flixster.com/KFFYzJYFNrgxs2Y0VhC2ZLnVLNM=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzI1ZjUxNDJlLTQ1M2YtNDQyYi04NWEyLWNjN2M4YzMxM2JjOC53ZWJw"
+                alt="Movie Poster 3" class="movie-poster" id="movie3-poster">
+            <div class="overlay">
+                <h3>Movie 3</h3>
+                <p class="animate-fade-in">Click to Book</p>
+            </div>
+        </div>
+
+        <!-- Booking Form -->
+        <div id="booking-form">
+            <h2>Booking Details</h2>
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Your Name">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Your Email">
+
+            <label for="seats">Number of Seats:</label>
+            <input type="number" id="seats" placeholder="Number of Seats">
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" placeholder="Select Date">
+
+            <label for="time">Time:</label>
+            <input type="time" id="time" placeholder="Select Time">
+
+            <label for="location">Location:</label>
+            <select id="location">
+                <option value="Bangalore">Bangalore</option>
+                <option value="Chennai">Chennai</option>
+            </select>
+
+            <button onclick="bookTicket()">Book Now</button>
+        </div>
+        <!-- Go Back Button -->
+        <button id="go-back-btn" onclick="goBack()">Go Back</button>
+    </section>
+
+    <script>
+         function showBookingForm(movieId) {
+            // Hide all movie posters
+            document.getElementById("wonka-poster").style.display = "none";
+            document.getElementById("aquaman-poster").style.display = "none";
+            document.getElementById("movie3-poster").style.display = "none";
+
+            // Show the booking form
+            document.getElementById("booking-form").style.display = "block";
+
+            // Show the Go Back button
+            document.getElementById("go-back-btn").style.display = "inline-block";
+        }
+
+        function goBack() {
+            // Show all movie posters
+            document.getElementById("wonka-poster").style.display = "block";
+            document.getElementById("aquaman-poster").style.display = "block";
+            document.getElementById("movie3-poster").style.display = "block";
+
+            // Hide the booking form
+            document.getElementById("booking-form").style.display = "none";
+
+            // Hide the Go Back button
+            document.getElementById("go-back-btn").style.display = "none";
+        }
+
+        function bookTicket() {
+            // Implement your ticket booking logic here
+            alert("Ticket booked successfully!");
+        }
+    </script>
+</body>
+</html>
