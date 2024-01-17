@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ticket Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        section {
+            margin: 20px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .movie-poster {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Movie Ticket Booking</h1>
+    </header>
+
+    <section>
+        <form>
+            <label for="movie">Select Movie:</label>
+            <select id="movie" name="movie" required>
+                <option value="movie1">Movie 1</option>
+                <option value="movie2">Movie 2</option>
+                <option value="movie3">Movie 3</option>
+                <!-- Add more movie options as needed -->
+            </select>
+
+            <!-- Movie Poster Image for Movie 1 -->
+            <img src="https://m.media-amazon.com/images/M/MV5BNmQ0ODBhMjUtNDRhOC00MGQzLTk5MTAtZDliODg5NmU5MjZhXkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_.jpg" alt="Movie Poster" class="movie-poster" id="movie1-poster" style="display: none;">
+
+            <!-- Movie Poster Image for Movie 2 -->
+            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcR7ss6zbDj60sAol5JsdoBujNwuMIiDCCbD4jlluM68pJG-i7_t" alt="Movie Poster" class="movie-poster" id="movie2-poster" style="display: none;">
+
+            <!-- Movie Poster Image for Movie 3 -->
+            <img src="https://resizing.flixster.com/KFFYzJYFNrgxs2Y0VhC2ZLnVLNM=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzI1ZjUxNDJlLTQ1M2YtNDQyYi04NWEyLWNjN2M4YzMxM2JjOC53ZWJw" alt="Movie Poster" class="movie-poster" id="movie3-poster" style="display: none;">
+
+            <label for="date">Select Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="time">Select Time:</label>
+            <input type="time" id="time" name="time" required>
+
+            <label for="tickets">Number of Tickets:</label>
+            <input type="number" id="tickets" name="tickets" min="1" required>
+
+            <button type="submit">Book Now</button>
+        </form>
+    </section>
+
+    <script>
+        // Function to show the corresponding movie poster based on the selected movie
+        document.getElementById("movie").addEventListener("change", function() {
+            var selectedMovie = this.value;
+
+            // Hide all movie posters
+            document.getElementById("movie1-poster").style.display = "none";
+            document.getElementById("movie2-poster").style.display = "none";
+            document.getElementById("movie3-poster").style.display = "none";
+
+            // Show the selected movie poster
+            document.getElementById(selectedMovie + "-poster").style.display = "block";
+        });
+    </script>
+</body>
+</html>
